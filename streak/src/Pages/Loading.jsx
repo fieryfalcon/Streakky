@@ -3,19 +3,27 @@ import "../style/Loading.css";
 import { setUser } from '../redux/action';
 import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import firebaseConfig from "../Config/config.js";
 import { useNavigate, useParams } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
+// import Login from '../Components/Login';
 let fire = require('../images/fire.png');
 
 
 
+
 const LoadingAnimation = () => {
+
+
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const user = useSelector((state) => state.user.user);
+    console.log('Redux state:', user);
 
     async function getUserData(uid) {
         const docRef = doc(db, "users", uid);
@@ -31,9 +39,6 @@ const LoadingAnimation = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // let timeoutId = setTimeout(() => {
-        //     setLoading(true); // set loading to true after 3 seconds
-        // }, 3000);
 
         if (Cookies.get('user')) {
             const user_cookie = Cookies.get('user');
@@ -41,21 +46,23 @@ const LoadingAnimation = () => {
             console.log(parsedValue.uid);
             getUserData(parsedValue.uid).then((data) => {
                 sessionStorage.setItem('user', JSON.stringify(data));
-                console.log(data);
+                dispatch(setUser(data));
+                console.log(user)
             });
-
-
-
-
-            // clearTimeout(timeoutId); // clear the timeout if the process completes before 3 seconds
-            setTimeout(() => {
-                navigate('/landing');
-
-
-
-            }, 2000);
-            setTimeout(() => { setLoading(false); }, 10000)
+        } else {
+            dispatch(setUser(null));
+            console.log(user)
         }
+
+
+
+
+        // clearTimeout(timeoutId); // clear the timeout if the process completes before 3 seconds
+        setTimeout(() => {
+
+            setLoading(false);
+        }, 5000);
+
     }, []);
 
 
@@ -69,7 +76,10 @@ const LoadingAnimation = () => {
                         <img id="fire" src={fire} />
                     </div>
                 </div>
-            </div> : <></>}</>
+            </div> : <>
+                {user !== null ? <><h1>Hey you are {user.displayName}</h1><Navbar /></> : <><h1>Hey you are not logged in</h1></>}
+
+            </>}</>
 
 
 
