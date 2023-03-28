@@ -1,9 +1,18 @@
+#background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(27, 7, 0);
+
+}
+
+
 #fire2 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
+
 }
 
 #fire_border {
@@ -22,6 +31,7 @@
 #fire {
     border-radius: 100%;
     padding: 30px;
+    background-color: black;
     box-shadow: 0 0 10px 2px #ff0000;
     animation: glow 1s ease-in-out infinite alternate;
     height: 25vh;
