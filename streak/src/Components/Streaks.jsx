@@ -46,7 +46,7 @@ function App() {
         targetTime.setHours(givenHours);
         targetTime.setMinutes(givenMinutes);
 
-        // Compare the current time to the given time
+
         if (currentTime.getTime() == targetTime.getTime()) {
             console.log(currentTime.getTime(), targetTime.getTime());
             // If the current time is greater than or equal to the given time, then the button has been clicked
