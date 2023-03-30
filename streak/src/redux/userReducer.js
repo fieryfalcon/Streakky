@@ -20,3 +20,11 @@ export const userReducer = (state = initialState, action) => {
 };
 
 
+
+// const handleClick = () => {
+//     // Set the button clicked state to true and hide the time
+//     setIsButtonClicked(true);
+//     setIsVisible(false);
+// };
+
+

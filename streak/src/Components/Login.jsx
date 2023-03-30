@@ -19,49 +19,42 @@ export default function LoginPage() {
     const user = useSelector((state) => state.user.user);
     console.log(user);
 
-
     const signInWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
         provider.addScope("email");
         const { user } = await signInWithPopup(auth, provider);
         const uid = user.uid;
 
-        const userData = {
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            uid: user.uid,
-            time: "0:0",
-            email: user.providerData[0].email,
-            dos: [],
-            donts: [],
-            streakdata: [],
-        };
-
-
-
-
-
         async function getUserData(uid) {
             const docRef = doc(firestore, "users", uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-
                 const cookie = new Cookies();
                 cookie.set("user", docSnap.data());
                 console.log(cookie.get("user"));
                 dispatch(setUser(docSnap.data()));
             } else {
                 console.log("No such document!");
-                return null;
+                const userData = {
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
+                    uid: user.uid,
+                    time: "0:0",
+                    email: user.providerData[0].email,
+                    dos: [],
+                    donts: [],
+                    dosCount: [0, 0, 0],
+                    dontsCount: [0, 0, 0],
+                    streakdata: [],
+                };
+                const userDocRef = doc(collection(firestore, "users"), user.uid);
+                await setDoc(userDocRef, userData); // wait for the data to be written to Firestore
+                dispatch(setUser(userData));
             }
         }
-        const userDocRef = doc(collection(firestore, "users"), user.uid);
-        await setDoc(userDocRef, userData); // wait for the data to be written to Firestore
+
         getUserData(uid);
-
-
     };
-
 
 
     return (

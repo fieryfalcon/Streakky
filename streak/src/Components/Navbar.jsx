@@ -45,6 +45,9 @@ import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, signInWithRedi
 import { collection, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { useLocation } from 'react-router-dom';
 import { Window } from '@mui/icons-material';
+import Cookies from 'universal-cookie';
+import { setUser } from '../redux/action';
+import { useDispatch } from 'react-redux';
 const drawerWidth = 340;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -102,6 +105,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
     const [time, setTime] = React.useState(false);
     const theme = useTheme();
@@ -114,6 +118,9 @@ export default function Navbar() {
 
     const uid = user.uid;
     console.log(uid)
+
+
+
     const handleTimeChange = (time) => {
         setSelectedTime(time);
         console.log(time.$H + ":" + time.$m);
@@ -126,7 +133,34 @@ export default function Navbar() {
                 console.error('Error updating user data:', error);
             }
         };
-        updateUserData(uid, { time: time.$H + ":" + time.$m });
+        async function getUserData(uid) {
+            const docRef = doc(firestore, "users", uid);
+            const docSnap = await getDoc(docRef);
+            dispatch(setUser(docSnap.data()));
+            console.log(user);
+            console.log("WORKING");
+
+
+        }
+        updateUserData(uid, { time: time.$H + ":" + time.$m }).then(() => { getUserData(uid); });
+
+
+        // async function getUserData(uid) {
+        //     const docRef = doc(firestore, "users", uid);
+        //     const docSnap = await getDoc(docRef);
+        //     if (docSnap.exists()) {
+
+        //         const cookie = new Cookies();
+        //         cookie.set("user", docSnap.data());
+        //         console.log(cookie.get("user") + "   /////   obatined");
+        //         dispatch(setUser(docSnap.data()));
+        //     } else {
+        //         console.log("No such document!");
+        //         return null;
+        //     }
+        // }
+
+
 
     };
     const logout = () => {

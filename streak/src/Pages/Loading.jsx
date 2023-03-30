@@ -9,7 +9,8 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import firebaseConfig from "../Config/config.js";
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-// import Login from '../Components/Login';
+import Login from '../Components/Login';
+import Streaks from '../Components/Streaks';
 let fire = require('../images/fire.png');
 
 
@@ -77,7 +78,7 @@ const LoadingAnimation = () => {
                     </div>
                 </div>
             </div> : <>
-                {user !== null ? <><h1>Hey you are {user.displayName}</h1><Navbar /></> : <><h1>Hey you are not logged in</h1></>}
+                {user !== null ? <><h1>Hey you are {user.displayName}</h1><Navbar /><Streaks /></> : <><h1>Hey you are not logged in</h1><Login /></>}
 
             </>}</>
 
