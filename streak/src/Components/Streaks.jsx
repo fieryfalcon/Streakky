@@ -14,45 +14,61 @@ function App() {
     const user = useSelector((state) => state.user.user);
     const [tasks, setTasks] = useState(user.dos);
     const [streaks, setStreaks] = useState(user.dosCount);
-    const [updatedArray, setUpdatedArray] = useState([]);
+    const [streaked, setStreaked] = useState(user.doStreaked);
     const [newTask, setNewTask] = useState("");
     const [showInput, setShowInput] = useState(false);
     const [display, setDisplay] = useState(true);
     const app = initializeApp(firebaseConfig);
     const [isVisible, setIsVisible] = useState(false);
-
-    // State to keep track of whether the button has been clicked or not
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-    // Get the user's specified time from the database (assuming it's stored in 24-hour format as a string like "1300")
-    const userTime = user.time;
-
     const firestore = getFirestore(app);
 
+    const updateUserData = async (uid, field) => {
+        const userDocRef = doc(collection(firestore, 'users'), uid);
+        try {
+            await updateDoc(userDocRef, field);
+            console.log('User data updated successfully.');
+        } catch (error) {
+            console.error('Error updating user data:', error);
+        }
+    };
+
+
+
+    function checkTime(givenTime) {
+        // Get the current time
+        const currentTime = new Date();
+
+        // Split the given time into hours and minutes
+        const [givenHours, givenMinutes] = givenTime.split(':');
+
+        // Create a new date object with the given time
+        const targetTime = new Date();
+        targetTime.setHours(givenHours);
+        targetTime.setMinutes(givenMinutes);
+
+        // Compare the current time to the given time
+        if (currentTime.getTime() == targetTime.getTime()) {
+            console.log(currentTime.getTime(), targetTime.getTime());
+            // If the current time is greater than or equal to the given time, then the button has been clicked
+            updateUserData(user.uid, { doStreaked: [0, 0, 0] });
+            setStreaked([0, 0, 0]);
+
+        }
+    }
     useEffect(() => {
-        const interval = setInterval(() => {
-            // Get the current time in 24-hour format
-            const now = new Date();
-            const currentHours = now.getHours();
-            const currentMinutes = now.getMinutes();
+        const intervalId = setInterval(() => {
+            checkTime(user.time);
 
-            // Extract the hours and minutes from the user's specified time
-            const [userHours, userMinutes] = user.time.split(':').map(Number);
 
-            // Calculate the difference in minutes between the current time and user's specified time
-            const timeDiffInMinutes = (currentHours * 60 + currentMinutes) - (userHours * 60 + userMinutes);
-            console.log(timeDiffInMinutes);
-            // Check if the time difference is greater than or equal to 24 hours (1440 minutes)
-            if (timeDiffInMinutes >= 1440) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
         }, 1000);
 
-        return () => clearInterval(interval);
-
+        // Cleanup function to clear the interval when the component unmounts
+        return () => {
+            clearInterval(intervalId);
+        };
     }, [user.time]);
+
+
 
     function shiftAndReplace(arr, index) {
         if (index < 0 || index >= arr.length) {
@@ -70,23 +86,18 @@ function App() {
 
         const newStreaks = [...streaks];
         newStreaks[index] = newStreaks[index] + 1;
+        const newStreaked = [...streaked];
+        newStreaked[index] = 1;
+        setStreaked(newStreaked);
         setStreaks(newStreaks);
+        setIsVisible(false);
+        console.log(streaked + "this ")
 
 
 
 
 
     }
-
-    const updateUserData = async (uid, field) => {
-        const userDocRef = doc(collection(firestore, 'users'), uid);
-        try {
-            await updateDoc(userDocRef, field);
-            console.log('User data updated successfully.');
-        } catch (error) {
-            console.error('Error updating user data:', error);
-        }
-    };
 
 
 
@@ -125,6 +136,10 @@ function App() {
     useEffect(() => {
         updateUserData(user.uid, { dos: tasks });
     }, [tasks]);
+
+    useEffect(() => {
+        updateUserData(user.uid, { doStreaked: streaked });
+    }, [streaked]);
 
     useEffect(() => {
         updateUserData(user.uid, { dosCount: streaks });
@@ -183,7 +198,7 @@ function App() {
                                 <IconButton edge="end" onClick={() => handleDelete(index)}>
                                     <DeleteIcon />
                                 </IconButton>
-                                {isVisible ? (<Button variant="contained" color="primary" onLoad onClick={() => handleincrement(index)}>
+                                {streaked[index] == 0 ? (<Button variant="contained" color="primary" onLoad onClick={() => handleincrement(index)}>
                                     ADD
                                 </Button>) : <><Button variant="disabled" color="primary">
                                     ADD
