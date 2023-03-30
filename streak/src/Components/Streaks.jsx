@@ -198,7 +198,7 @@ function App() {
                                 <IconButton edge="end" onClick={() => handleDelete(index)}>
                                     <DeleteIcon />
                                 </IconButton>
-                                {streaked[index] == 0 ? (<Button variant="contained" color="primary" onLoad onClick={() => handleincrement(index)}>
+                                {streaked[index] === 0 ? (<Button variant="contained" color="primary" onLoad onClick={() => handleincrement(index)}>
                                     ADD
                                 </Button>) : <><Button variant="disabled" color="primary">
                                     ADD

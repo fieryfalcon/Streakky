@@ -164,11 +164,10 @@ export default function Navbar() {
 
     };
     const logout = () => {
-        document.cookie = 'user=' + user + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
+        const cookie = new Cookies();
+        const user2 = cookie.get("user");
+        document.cookie = 'user=' + user2 + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+        dispatch(setUser(null));
     }
     const timeopen = () => {
         if (open) {
