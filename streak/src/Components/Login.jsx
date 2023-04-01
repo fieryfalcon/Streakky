@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import { setUser } from '../redux/action';
 import { useDispatch } from 'react-redux';
-
+import "../style/Components.css";
 import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, signInWithRedirect } from "firebase/auth";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 
@@ -61,7 +61,19 @@ export default function LoginPage() {
 
     return (
         <div>
-            <button onClick={signInWithGoogle}>Login with Google</button>
+            <button
+                onClick={signInWithGoogle}
+                id="google-signin"
+
+            >
+                <img
+                    src="https://developers.google.com/identity/images/g-logo.png"
+                    alt="Google Logo"
+                    style={{ marginRight: '16px', height: "100%", }}
+                />
+                <span id="google-text">Sign in with Google</span>
+            </button>
+
 
 
         </div>

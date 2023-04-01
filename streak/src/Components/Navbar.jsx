@@ -47,6 +47,7 @@ import { useLocation } from 'react-router-dom';
 import { Window } from '@mui/icons-material';
 import Cookies from 'universal-cookie';
 import { setUser } from '../redux/action';
+import "../style/Components.css";
 import { useDispatch } from 'react-redux';
 const drawerWidth = 340;
 
