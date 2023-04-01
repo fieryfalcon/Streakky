@@ -109,6 +109,7 @@ const LoadingAnimation = () => {
                                     <Navbar />
                                 </div>
                             </div>
+                            <Streaks />
                         </div>
 
                     </>

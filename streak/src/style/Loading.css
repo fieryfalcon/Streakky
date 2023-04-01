@@ -76,7 +76,7 @@ Styles for page1 ( not logged in) */
 
 
 #page01 {
-    height: auto;
+    height: 100vh;
     width: auto;
     background-color: #010622;
     color: #F9FBF2;

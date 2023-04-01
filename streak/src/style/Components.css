@@ -72,3 +72,180 @@ This is the stylesheet for the sign in components */
 
 /* =================================================================
 Stylesheet for the Navigation */
+
+#drawerheader {
+    background-color: #010622;
+    color: #ff7b00;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+#header-typo {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.4em;
+
+}
+
+.MenuItem {
+    background-color: #ddd;
+    height: 40px;
+    width: 40px;
+    padding-top: 10vh;
+}
+
+#list {
+    width: 80%;
+    padding-bottom: 4vh;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+    align-items: center;
+}
+
+.list-text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list-item {
+    padding: 1vh;
+}
+
+.list-item2 {
+    padding: 1vh;
+}
+
+.list-item:hover {
+    padding: 1vh;
+    color: white;
+    background-color: #010622;
+    border-radius: 15px;
+}
+
+#table {
+    width: 60%;
+    height: auto;
+    margin: auto;
+    background-color: white;
+    color: #010622;
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#table-topic-nosearch {
+    background-color: #ff7b00;
+    display: flex;
+    border-radius: 15px;
+    height: fit-content;
+    height: auto;
+}
+
+#table-topic-nosearch h1 {
+    margin-left: 10%;
+    border: none;
+}
+
+#button1 {
+    background-color: #ff7b00;
+    color: #010622;
+    border-color: #010622;
+    border: #010622 5px solid;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    justify-content: center;
+    text-align: center;
+}
+
+#button2 {
+    background-color: #ff7b00;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    justify-content: center;
+    text-align: center;
+}
+
+#task-container {
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 70% 20% 10%;
+    border-radius: 15px;
+
+}
+
+#list-streak-button {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#task-streak {
+    margin-right: 1vw;
+}
+
+#task-text {
+    padding-right: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+
+
+#button3 {
+    background-color: #ff7b00;
+    color: #010622;
+    border-color: #010622;
+    border: #010622 5px solid;
+    border-radius: 10px;
+    border: none;
+    padding-left: 0;
+    font-weight: 500;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    justify-content: center;
+
+}
+
+#table-topic-search {
+    background-color: #ff7b00;
+    display: flex;
+    border-radius: 15px;
+    justify-content: space-between;
+    height: fit-content;
+    height: auto;
+    display: grid;
+    grid-template-columns: 50% 20% 10%;
+}

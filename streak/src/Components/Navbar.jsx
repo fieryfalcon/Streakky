@@ -103,6 +103,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     '&:hover': {
         backgroundColor: orange[700],
     },
+    marginTop: theme.spacing("3vh")
 }));
 
 export default function Navbar() {
@@ -193,6 +194,7 @@ export default function Navbar() {
     const isTablet = useMediaQuery('(max-width:1080px)');
     const drawerWidth = isMobile ? '100%' : isTablet ? "60%" : "30%";
     return (
+
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <IconButton
@@ -210,39 +212,39 @@ export default function Navbar() {
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
+                        backgroundColor: '#F9FBF2',
+                        color: '#1a1e2c',
+                        textAlign: 'center'
                     },
                 }}
                 variant="persistent"
                 anchor="right"
                 open={open}
+                id="drawer"
             >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                <DrawerHeader id='drawerheader'>
+                    <IconButton onClick={handleDrawerClose}  >
+                        <tex style={{ color: 'white' }}> > </tex>
                     </IconButton>
-                    <Typography>{user.displayName}</Typography>
+                    <Typography id="header-typo">{user.displayName}</Typography>
                     <img src={user.photoURL} alt="user" style={{ height: '45px', marginLeft: '20px', borderRadius: '50%' }} />
 
                 </DrawerHeader>
                 <Divider />
-                <Typography>{user.displayName}</Typography>
-                <List>
 
-                    <ListItem disablePadding>
+                <List id="list">
+
+                    <ListItem disablePadding className='list-item'>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <InfoIcon />
-                            </ListItemIcon>
-                            <ListItemText>
-                                About the App
+
+                            <ListItemText className='list-text'>
+                                ABOUT THE APP
                             </ListItemText>
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding className='list-item'>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <WatchIcon />
-                            </ListItemIcon>
+
 
                             {time ? <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <StaticTimePicker
@@ -253,25 +255,21 @@ export default function Navbar() {
                                     renderInput={(params) => <TextField {...params} />}
                                 />
 
-                            </LocalizationProvider> : <><ListItemText>
-                                Change Day start time
-                            </ListItemText><ListItemButton onClick={timeopen}>
-                                    <ListItemIcon>
-                                        <ManageAccountsIcon />
-                                    </ListItemIcon>
+                            </LocalizationProvider> : <><ListItemButton onClick={timeopen}>
+                                <ListItemText className='list-text'>
+                                    CHANGE DAY START TIME
+                                </ListItemText>
 
-                                </ListItemButton></>}
+                            </ListItemButton></>}
 
 
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding className='list-item'>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <ContactPageIcon />
-                            </ListItemIcon>
-                            <ListItemText>
-                                Contact Us
+
+                            <ListItemText className='list-text'>
+                                CONTACT US
                             </ListItemText>
                         </ListItemButton>
                     </ListItem>
@@ -279,23 +277,29 @@ export default function Navbar() {
                 </List>
                 {/* <Divider light={true} textAlign='center' variant='middle'><Typography style={{ margintop: "10px" }}>Streak</Typography></Divider> */}
                 <Divider />
-                <h3>Streaks 🔥</h3>
+                <DrawerHeader id='drawerheader' style={{ justifyContent: "center" }}>
+
+                    <Typography id="header-typo">Streaks 🔥</Typography>
+
+
+                </DrawerHeader>
+
                 {time == false ? <List>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding className='list-item2' style={{ textAlign: "center" }}>
                         <ListItemText>
                             <Typography>
                                 Ongoing streaks :
                             </Typography>
                         </ListItemText>
                     </ListItem>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding className='list-item2' style={{ textAlign: "center" }}>
                         <ListItemText>
                             <Typography>
                                 Broken Streaks :
                             </Typography>
                         </ListItemText>
                     </ListItem>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding className='list-item2' style={{ textAlign: "center" }}>
                         <ListItemText>
                             <Typography>
                                 Highest Record :
