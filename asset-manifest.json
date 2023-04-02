@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Streakky/static/css/main.1756b958.css",
+    "main.js": "/Streakky/static/js/main.093d1b06.js",
+    "static/js/787.61669faa.chunk.js": "/Streakky/static/js/787.61669faa.chunk.js",
+    "static/media/blah.png": "/Streakky/static/media/blah.67a007b58804bb7509f3.png",
+    "static/media/fire.png": "/Streakky/static/media/fire.c42cb85d5281d38aa55c.png",
+    "static/media/git.png": "/Streakky/static/media/git.e95fb333b99098df1478.png",
+    "static/media/slick.svg": "/Streakky/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Streakky/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Streakky/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Streakky/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/Streakky/index.html",
+    "main.1756b958.css.map": "/Streakky/static/css/main.1756b958.css.map",
+    "main.093d1b06.js.map": "/Streakky/static/js/main.093d1b06.js.map",
+    "787.61669faa.chunk.js.map": "/Streakky/static/js/787.61669faa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1756b958.css",
+    "static/js/main.093d1b06.js"
+  ]
+}
