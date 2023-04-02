@@ -174,7 +174,15 @@ const LoadingAnimation = () => {
                             <Instructions />
                         </div>
                         <div id="page03">
+                            <div id="github-cat">
+                                <div id="github-image"><img src={github} /></div>
+                                <div>
+                                    <div id='github-text'>Love what you're seeing...Dont hesitate to give a star in Github..!<br /><br />Cheers...🍻</div>
+                                    <div id="github-button"><GithubButton /></div>
+                                </div>
 
+                            </div>
+                            <div id="sudarsan"><b>Made with ❤️ by </b><a href='https://github.com/fieryfalcon' target="_blank">@fieryfalcon</a></div>
                         </div>
 
                     </>
@@ -200,12 +208,12 @@ const LoadingAnimation = () => {
                                     </IconButton>
                                     <ul id='unlisted1'>
                                         <li className='li-item'>
-                                            <Link to="page02" smooth={true}>Home</Link>
+                                            <Link to="page01" smooth={true}>Home</Link>
                                         </li>
                                         <li className='li-item'>
-                                            <Link to="page03" smooth={true}>About</Link>
+                                            <Link to="page02" smooth={true}>About</Link>
                                         </li>
-                                        <li className='li-item'><a href="#">Contact</a></li>
+                                        <li className='li-item'><Link to="page03" smooth={true}>Github</Link></li>
                                         <li className='li-item'>
                                             <Login />
                                         </li>
@@ -220,9 +228,9 @@ const LoadingAnimation = () => {
                                     onOpen={toggleDrawer(true)}
                                 >
                                     <ul id="unlisted2">
-                                        <li> <Link to="page02" smooth={true}>Home</Link></li>
-                                        <li> <Link to="page03" smooth={true}>About</Link></li>
-                                        <li><Link to="page03" smooth={true}>About</Link></li>
+                                        <li> <Link to="page01" smooth={true}>Home</Link></li>
+                                        <li> <Link to="page02" smooth={true}>About</Link></li>
+                                        <li><Link to="page03" smooth={true}>Github</Link></li>
                                         <li>
                                             <Login />
                                         </li>

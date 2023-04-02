@@ -261,9 +261,11 @@ Styles for page1 ( not logged in) */
 
 
 @media screen and (max-width: 1000px) {
+
+
     #github-cat {
 
-        height: 80vh;
+        height: auto;
         margin: auto;
         display: flex;
         justify-content: space-between;
@@ -275,7 +277,7 @@ Styles for page1 ( not logged in) */
 
 
     #github-text {
-        width: 80%;
+        width: auto;
         height: auto;
         margin: auto;
         margin-top: 15vh;
@@ -289,6 +291,7 @@ Styles for page1 ( not logged in) */
         width: fit-content;
         margin: auto;
         margin-top: 7vh;
+        margin-bottom: 10vh;
     }
 
     #page01 {
@@ -415,6 +418,7 @@ Styles for page1 ( not logged in) */
         text-align: center;
         padding-top: 20px;
         font-size: large;
+        margin-bottom: 0px;
     }
 
     #sudarsan a {
@@ -429,12 +433,18 @@ Styles for page1 ( not logged in) */
         font-size: large;
     }
 
+
+
+
+
 }
 
 @media screen and (max-width: 460px) {
     #name {
         display: none;
     }
+
+
 }
 
 
