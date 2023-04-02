@@ -49,6 +49,7 @@ import Cookies from 'universal-cookie';
 import { setUser } from '../redux/action';
 import "../style/Components.css";
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-scroll';
 const drawerWidth = 340;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -106,7 +107,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     marginTop: theme.spacing("3vh")
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
     const [time, setTime] = React.useState(false);
@@ -121,6 +122,17 @@ export default function Navbar() {
     const uid = user.uid;
     console.log(uid)
 
+    const handleScrollToSlide = () => {
+        const slide3 = document.querySelector('#page03');
+        slide3.scrollIntoView({ behavior: 'smooth' });
+        props.onSlideChange(3);
+    };
+
+    const handleScrollToSlide2 = () => {
+        const slide2 = document.querySelector('#page02');
+        slide2.scrollIntoView({ behavior: 'smooth' });
+        props.onSlideChange(2);
+    };
 
 
     const handleTimeChange = (time) => {
@@ -235,7 +247,7 @@ export default function Navbar() {
                 <List id="list">
 
                     <ListItem disablePadding className='list-item'>
-                        <ListItemButton>
+                        <ListItemButton onClick={handleScrollToSlide2}>
 
                             <ListItemText className='list-text'>
                                 ABOUT THE APP
@@ -266,7 +278,7 @@ export default function Navbar() {
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding className='list-item'>
-                        <ListItemButton>
+                        <ListItemButton onClick={handleScrollToSlide}>
 
                             <ListItemText className='list-text'>
                                 CONTACT US

@@ -6,13 +6,28 @@ import { Troubleshoot } from '@mui/icons-material';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import firebaseConfig from "../Config/config.js";
+import { makeStyles } from '@material-ui/core/styles';
+import { useSwipeable } from 'react-swipeable';
+
 import AddIcon from '@mui/icons-material/Add';
 import WhatshotRoundedIcon from '@mui/icons-material/WhatshotRounded';
 import "../style/Components.css";
 import Divider from '@mui/material/Divider';
 import { collection, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function App() {
+const useStyles = makeStyles({
+    tableContainer: {
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 650,
+    },
+});
+
+function App({ data }) {
     const user = useSelector((state) => state.user.user);
     const [tasks, setTasks] = useState(user.dos);
     const [streaks, setStreaks] = useState(user.dosCount);
@@ -30,6 +45,19 @@ function App() {
     const [showInput2, setShowInput2] = useState(false);
     const [display2, setDisplay2] = useState(true);
     const [isVisible2, setIsVisible2] = useState(false);
+
+
+    const [pageIndex, setPageIndex] = useState(0);
+
+    const handleSwipe = (delta) => {
+        setPageIndex((prevIndex) => prevIndex + delta);
+    };
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => handleSwipe(1),
+        onSwipedRight: () => handleSwipe(-1),
+    });
+
     const updateUserData = async (uid, field) => {
         const userDocRef = doc(collection(firestore, 'users'), uid);
         try {
@@ -39,8 +67,6 @@ function App() {
             console.error('Error updating user data:', error);
         }
     };
-
-
 
     function checkTime(givenTime) {
         // Get the current time
@@ -223,7 +249,7 @@ function App() {
     }, [streaks2]);
 
     useEffect(() => {
-        if (tasks2.length < 3) {
+        if (tasks2.length < 5) {
             setDisplay2(true);
         } else {
             setDisplay2(false);
@@ -233,145 +259,164 @@ function App() {
         console.log(streaks2)
         console.log(tasks2);
     });
+    useEffect(() => {
+        if (tasks.length < 5) {
+            setDisplay(true);
+        } else {
+            setDisplay(false);
+
+        }
+
+        console.log(streaks)
+        console.log(tasks);
+    });
     return (
+
         <>
-            <div id="table">
+            <div id='table-combined' >
+                <div id="table">
 
-                {showInput ? (
-                    <form onSubmit={handleSubmit}>
-                        <div id='table-topic-search'>
-                            <TextField
-                                label="Enter a new task within 120 chars"
-                                value={newTask}
-                                required
-                                onChange={handleInputChange}
-                                inputProps={{ maxLength: 120 }}
-                                style={{ marginTop: "20px", marginBottom: "10px", backgroundColor: "white" }}
-                            />
+                    {showInput ? (
+                        <form onSubmit={handleSubmit}>
+                            <div id='table-topic-search'>
+                                <TextField
+                                    label="Enter a new task within 120 chars"
+                                    value={newTask}
+                                    required
+                                    onChange={handleInputChange}
+                                    inputProps={{ maxLength: 120 }}
+                                    style={{ marginTop: "20px", marginLeft: "20px", marginBottom: "10px", backgroundColor: "white", width: "30%" }}
+                                />
 
-                            <button type="submit" id='button3'>Add a Habit to monitor</button>
-                            <button onClick={handleCancelClick} id='button3'>Cancel</button>
-                        </div>
-
-
-                    </form>
-                ) : (
-                    <>
-                        {display ? (
-                            <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
-                                <a onClick={handleAddClick} id="button1">Add a new Habit</a>
+                                <button type="submit" id='button1'>Add a Habit to monitor</button>
+                                <button onClick={handleCancelClick} id='button1'>Cancel</button>
                             </div>
-                        ) : (
-                            <>
 
+
+                        </form>
+                    ) : (
+                        <>
+                            {display ? (
                                 <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
-                                    <Button variant="disabled" color="primary" onClick={handleAddClick} id="button2">
-                                        Limit reached cant add further
-                                    </Button>
+                                    <a onClick={handleAddClick} id="button1">Add a new Habit</a>
                                 </div>
-                            </>
-                        )}
-                    </>
-                )}
-                <List>
-                    {tasks.map((task, index) => {
+                            ) : (
+                                <>
 
-                        return (
-                            <ListItem key={index} id="task-container">
-                                <div id='task-text'><ListItemText id='task-text' primary={task} style={{ width: "100%" }} /></div>
-                                <div id='task-streak'>
-                                    {streaked[index] === 0 ? (<div id='list-streak-button'><ListItemText primary={streaks[index]} /><button onClick={() => handleincrement(index)}>
-                                        💥
-                                    </button></div>) : <div id='list-streak-button'><ListItemText primary={streaks[index]} /><Button variant="disabled" color="primary">
-                                        💥
-                                    </Button></div>}</div>
-                                <div id='task-delete'>
-                                    <IconButton edge="end" onClick={() => handleDelete(index)}>
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </div>
-                                <Divider />
+                                    <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
+                                        <Button variant="disabled" color="primary" onClick={handleAddClick} id="button1">
+                                            Limit reached cant add further
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                    <List>
+                        {tasks.map((task, index) => {
 
-
-                            </ListItem>
-                        );
-                    })}
-                </List>
-            </div>
-            <div id="table">
-
-                {showInput2 ? (
-                    <form onSubmit={handleSubmit2}>
-                        <div id='table-topic-search'>
-                            <TextField
-                                label="Enter a new task within 120 chars"
-                                value={newTask2}
-                                required
-                                onChange={handleInputChange2}
-                                inputProps={{ maxLength: 120 }}
-                                style={{ marginTop: "20px", marginBottom: "10px", backgroundColor: "white" }}
-                            />
-
-                            <button type="submit" id='button3'>Add a Habit to monitor</button>
-                            <button onClick={handleCancelClick2} id='button3'>Cancel</button>
-                        </div>
+                            return (
+                                <ListItem key={index} id="task-container">
+                                    <div id='task-text'><ListItemText id='task-text' primary={task} style={{ width: "100%" }} /></div>
+                                    <div id='task-streak'>
+                                        {streaked[index] === 0 ? (<div id='list-streak-button'><ListItemText primary={streaks[index]} /><button onClick={() => handleincrement(index)}>
+                                            💥
+                                        </button></div>) : <div id='list-streak-button'><ListItemText primary={streaks[index]} /><Button variant="disabled" color="primary">
+                                            💥
+                                        </Button></div>}</div>
+                                    <div id='task-delete'>
+                                        <IconButton edge="end" onClick={() => handleDelete(index)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </div>
+                                    <Divider />
 
 
-                    </form>
-                ) : (
-                    <>
-                        {display2 ? (
-                            <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
-                                <a onClick={handleAddClick2} id="button1">Add a new Habit</a>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                </div>
+                <div id="table">
+
+                    {showInput2 ? (
+                        <form onSubmit={handleSubmit2}>
+                            <div id='table-topic-search2'>
+                                <TextField
+                                    label="Enter a new task within 120 chars"
+                                    value={newTask2}
+                                    required
+                                    onChange={handleInputChange2}
+                                    inputProps={{ maxLength: 120 }}
+                                    style={{ marginTop: "20px", marginLeft: "20px", marginBottom: "10px", backgroundColor: "white", width: "30%" }}
+
+                                />
+
+                                <button type="submit" id='button3'>Add a Habit to monitor</button>
+                                <button onClick={handleCancelClick2} id='button3'>Cancel</button>
                             </div>
-                        ) : (
-                            <>
 
-                                <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
-                                    <Button variant="disabled" color="primary" onClick={handleAddClick2} id="button2">
-                                        Limit reached cant add further
-                                    </Button>
+
+                        </form>
+                    ) : (
+                        <>
+                            {display2 ? (
+                                <div id='table-topic-nosearch2'><h1>Daily tasks check</h1>
+                                    <a onClick={handleAddClick2} id="button3">Add a new Habit</a>
                                 </div>
-                            </>
-                        )}
-                    </>
-                )}
-                <List>
-                    {tasks2.map((task, index) => {
+                            ) : (
+                                <>
 
-                        return (
-                            <ListItem key={index} id="task-container">
-                                <div id='task-text'><ListItemText id='task-text' primary={task} style={{ width: "100%" }} /></div>
-                                <div id='task-streak'>
-                                    {streaked2 && streaked2[index] === 0 ? (
-                                        <div id='list-streak-button'>
-                                            <ListItemText primary={streaks2 && streaks2[index]} />
-                                            <button onClick={() => handleincrement2(index)}>
-                                                💥
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div id='list-streak-button'>
-                                            <ListItemText primary={streaks2 && streaks2[index]} />
-                                            <Button variant="disabled" color="primary">
-                                                💥
-                                            </Button>
-                                        </div>
-                                    )}</div>
-                                <div id='task-delete'>
-                                    <IconButton edge="end" onClick={() => handleDelete2(index)}>
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </div>
-                                <Divider />
+                                    <div id='table-topic-nosearch2'><h1>Daily tasks check</h1>
+                                        <Button variant="disabled" color="primary" onClick={handleAddClick2} id="button3">
+                                            Limit reached cant add further
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                    <List>
+                        {tasks2.map((task, index) => {
+
+                            return (
+                                <ListItem key={index} id="task-container">
+                                    <div id='task-text'><ListItemText id='task-text' primary={task} style={{ width: "100%" }} /></div>
+                                    <div id='task-streak'>
+                                        {streaked2 && streaked2[index] === 0 ? (
+                                            <div id='list-streak-button'>
+                                                <ListItemText primary={streaks2 && streaks2[index]} />
+                                                <button onClick={() => handleincrement2(index)}>
+                                                    💥
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div id='list-streak-button'>
+                                                <ListItemText primary={streaks2 && streaks2[index]} />
+                                                <Button variant="disabled" color="primary">
+                                                    💥
+                                                </Button>
+                                            </div>
+                                        )}</div>
+                                    <div id='task-delete'>
+                                        <IconButton edge="end" onClick={() => handleDelete2(index)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </div>
+                                    <Divider />
 
 
-                            </ListItem>
-                        );
-                    })}
-                </List>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                </div>
+
             </div>
         </>
+
+
+
 
     );
 }

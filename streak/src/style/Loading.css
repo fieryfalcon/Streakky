@@ -76,12 +76,12 @@ Styles for page1 ( not logged in) */
 
 
 #page01 {
-    height: 100vh;
+    height: auto;
     width: auto;
     background-color: #010622;
     color: #F9FBF2;
     font-family: 'Montserrat', sans-serif;
-    padding-bottom: 10vh;
+    padding-bottom: 25vh;
 
 }
 
@@ -192,8 +192,108 @@ Styles for page1 ( not logged in) */
     margin: 10vw;
 }
 
+#unlisted2 {
+    list-style: none;
+    display: block;
+    width: auto;
+    margin-right: 10px;
+    align-items: center;
+}
+
+#unlisted2 li {
+    padding: 10px;
+    border: #010622 solid 1px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#unlisted2 li:hover {
+    padding: 10px;
+    border: #010622 solid 1px;
+    background-color: #010622;
+    color: whitesmoke;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#github-cat {
+
+    height: 80vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#github-cat img {
+
+    height: 50vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 17vw;
+    margin-top: 20vh;
+}
+
+
+#github-text {
+    font-size: 2em;
+    width: 40vw;
+    margin-top: 2vh;
+    line-height: normal;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-right: 12vw;
+    margin-top: 30vh;
+}
+
+#github-button {
+    margin-left: 17vw;
+    margin-top: 20px;
+    border: #010622 solid 4px;
+    height: fit-content;
+    width: fit-content;
+}
+
 
 @media screen and (max-width: 1000px) {
+    #github-cat {
+
+        height: 80vh;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #github-cat img {
+        display: none;
+    }
+
+
+    #github-text {
+        width: 80%;
+        height: auto;
+        margin: auto;
+        margin-top: 15vh;
+
+    }
+
+    #github-button {
+
+        border: #010622 solid 4px;
+        height: fit-content;
+        width: fit-content;
+        margin: auto;
+        margin-top: 7vh;
+    }
+
+    #page01 {
+        height: auto
+    }
 
     #hero-section {
         display: flex;
@@ -298,9 +398,44 @@ Styles for page1 ( not logged in) */
 
     }
 
+    #page02 {
+        height: auto;
+        display: flex !important;
+        flex-direction: column;
+        background-color: #f7f0f5;
+    }
+
+    #sudarsan {
+        background-color: #010622;
+        height: 10vh;
+        color: #f7f0f5;
+        text-decoration: none;
+
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        padding-top: 20px;
+        font-size: large;
+    }
+
+    #sudarsan a {
+        color: #fb8b24;
+        text-decoration: none;
+        font-size: large;
+    }
+
+    #sudarsan b {
+
+        text-decoration: none;
+        font-size: large;
+    }
+
 }
 
-@media screen and (max-width: 380px) {}
+@media screen and (max-width: 460px) {
+    #name {
+        display: none;
+    }
+}
 
 
 
@@ -325,9 +460,32 @@ Styles for page1 ( not logged in) */
 
 
 #page02 {
-    height: 100vh;
+    height: auto;
+    display: flex !important;
+    padding-bottom: 20vh;
+    background-color: #f7f0f5;
+
 }
 
 #page03 {
-    height: 100vh;
+    height: 90vh;
+    background-color: #ff8811;
+
+}
+
+#sudarsan {
+    background-color: #010622;
+    height: 10vh;
+    color: #f7f0f5;
+    text-decoration: none;
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#sudarsan a {
+    color: #fb8b24;
+    text-decoration: none;
+
 }

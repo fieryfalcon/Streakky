@@ -43,11 +43,11 @@ export default function LoginPage() {
                     email: user.providerData[0].email,
                     dos: [],
                     donts: [],
-                    dosCount: [0, 0, 0],
-                    dontsCount: [0, 0, 0],
+                    dosCount: [0, 0, 0, 0, 0],
+                    dontsCount: [0, 0, 0, 0, 0],
                     streakdata: [],
-                    doStreaked: [0, 0, 0],
-                    dontStreaked: [0, 0, 0]
+                    doStreaked: [0, 0, 0, 0, 0],
+                    dontStreaked: [0, 0, 0, 0, 0]
                 };
                 const userDocRef = doc(collection(firestore, "users"), user.uid);
                 await setDoc(userDocRef, userData); // wait for the data to be written to Firestore
