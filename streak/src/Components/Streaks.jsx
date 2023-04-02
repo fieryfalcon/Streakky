@@ -297,13 +297,13 @@ function App({ data }) {
                     ) : (
                         <>
                             {display ? (
-                                <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
+                                <div id='table-topic-nosearch'><h1>Habits to build</h1>
                                     <a onClick={handleAddClick} id="button1">Add a new Habit</a>
                                 </div>
                             ) : (
                                 <>
 
-                                    <div id='table-topic-nosearch'><h1>Daily tasks check</h1>
+                                    <div id='table-topic-nosearch'><h1>Habits to build</h1>
                                         <Button variant="disabled" color="primary" onClick={handleAddClick} id="button1">
                                             Limit reached cant add further
                                         </Button>
@@ -361,13 +361,13 @@ function App({ data }) {
                     ) : (
                         <>
                             {display2 ? (
-                                <div id='table-topic-nosearch2'><h1>Daily tasks check</h1>
+                                <div id='table-topic-nosearch2'><h1>Habits to break</h1>
                                     <a onClick={handleAddClick2} id="button3">Add a new Habit</a>
                                 </div>
                             ) : (
                                 <>
 
-                                    <div id='table-topic-nosearch2'><h1>Daily tasks check</h1>
+                                    <div id='table-topic-nosearch2'><h1>Habits to break</h1>
                                         <Button variant="disabled" color="primary" onClick={handleAddClick2} id="button3">
                                             Limit reached cant add further
                                         </Button>
