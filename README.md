@@ -1,4 +1,4 @@
-# Streakky
+# Streakky :collision:
 
 Streakky is a powerful habit-building app that helps you develop positive habits and break negative ones. Built using React, Firebase, and Redux, this cutting-edge tool uses the psychology of streaks to keep you motivated and on track.
 
