@@ -17,6 +17,25 @@ To install Streakky, follow these steps:
 2. Run `npm install` to install dependencies
 3. Run `npm start` to launch the app
 
+
+## Technologies
+Streakky is built using the following technologies:
+
+- React
+- Firebase
+- Redux
+
+## Screenshots 🚀️
+
+![Screenshot from 2023-04-03 05-22-35](https://user-images.githubusercontent.com/95534365/229386574-52bb414a-29c7-4397-ae59-50f62b749137.png)
+---
+Optimised for mobile usage!
+***
+![Screenshot from 2023-04-03 05-39-07](https://user-images.githubusercontent.com/95534365/229386513-2bdc8a76-468f-4fb1-9a6e-ed902f82a21c.png)
+
+
+
+
 ## Usage
 To use Streakky, follow these steps:
 
@@ -34,12 +53,6 @@ Streakky includes the following features:
 - Firebase backend for seamless performance
 - Redux for state management
 
-## Technologies
-Streakky is built using the following technologies:
-
-- React
-- Firebase
-- Redux
 
 ## Contributing
 If you're interested in contributing to Streakky, please follow these steps:
