@@ -29,7 +29,7 @@ Streakky is built using the following technologies:
 
 ![Screenshot from 2023-04-03 05-22-35](https://user-images.githubusercontent.com/95534365/229386574-52bb414a-29c7-4397-ae59-50f62b749137.png)
 ---
-Optimised for mobile usage!
+### Optimised for mobile usage!
 ***
 ![Screenshot from 2023-04-03 05-39-07](https://user-images.githubusercontent.com/95534365/229386513-2bdc8a76-468f-4fb1-9a6e-ed902f82a21c.png)
 
